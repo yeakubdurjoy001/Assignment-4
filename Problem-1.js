@@ -52,3 +52,20 @@ function deleteInvalids(array) {
   }
   return virusDelete;
 }
+
+function password(obj) {
+  if (!obj.name || !obj.birthYear || !obj.siteName) {
+    return "invalid";
+  }
+  if (isNaN(obj.birthYear)) {
+    return "invalid";
+  } else {
+    if (obj.birthYear.toString().length !== 4) {
+      return "invalid";
+    }
+  }
+  const websiteName =
+    obj.siteName.charAt(0).toUpperCase() + obj.siteName.slice(1);
+  const createPassword = websiteName + "#" + obj.name + "@" + obj.birthYear;
+  return createPassword;
+}
