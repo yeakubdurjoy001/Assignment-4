@@ -44,6 +44,7 @@ function deleteInvalids(array) {
     return "Please Input An Array";
   }
   const virusDelete = [];
+  let i = 0;
   for (i = 0; i < array.length; i++) {
     const element = array[i];
     if (typeof element === "number" && !isNaN(element)) {
@@ -52,6 +53,22 @@ function deleteInvalids(array) {
   }
   return virusDelete;
 }
+console.log(deleteInvalids({ num: [1, 2, 3] }));
+console.log(deleteInvalids(["1", { num: 2 }, NaN]));
+console.log(deleteInvalids([1, 2, -3]));
+console.log(
+  deleteInvalids([
+    1,
+    null,
+    undefined,
+    18,
+    -19,
+    NaN,
+    "12",
+    [1, 2],
+    { ob: "lala" },
+  ])
+);
 
 function password(obj) {
   if (!obj.name || !obj.birthYear || !obj.siteName) {
@@ -68,4 +85,30 @@ function password(obj) {
     obj.siteName.charAt(0).toUpperCase() + obj.siteName.slice(1);
   const createPassword = websiteName + "#" + obj.name + "@" + obj.birthYear;
   return createPassword;
+}
+
+function monthlySavings(arr, livingCost) {
+  if (!Array.isArray(arr) || typeof livingCost !== "number") {
+    return "invalid input";
+  }
+
+  // Calculation of total income
+  let sum = 0;
+  let totalTax = 0;
+  for (let element of arr) {
+    sum += element;
+    if (element >= 3000) {
+      const tax = 0.2;
+      const taxAmount = element * tax;
+      totalTax += taxAmount;
+    }
+  }
+
+  const netIncomeAfterTax = sum - totalTax;
+  const totalSavings = netIncomeAfterTax - livingCost;
+  if (totalSavings >= 0) {
+    return totalSavings;
+  } else {
+    return "earn more";
+  }
 }
