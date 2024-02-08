@@ -38,3 +38,17 @@ function checkName(name) {
     return "Bad Name";
   }
 }
+
+function deleteInvalids(array) {
+  if (!Array.isArray(array)) {
+    return "Please Input An Array";
+  }
+  const virusDelete = [];
+  for (i = 0; i < array.length; i++) {
+    const element = array[i];
+    if (typeof element === "number" && !isNaN(element)) {
+      virusDelete.push(element);
+    }
+  }
+  return virusDelete;
+}
